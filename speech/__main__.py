@@ -18,8 +18,13 @@ PUB_TOPIC_JX = '/speech/A004'
 SUB_TOPIC_ZF = '/speech/A005'  # 政府
 PUB_TOPIC_ZF = '/speech/A006'
 
+SUB_TOPIC_CS = '/speech/A007'  # 长沙演示
+PUB_TOPIC_CS = '/speech/A008'
+
 # Action dict path
 VERBS_PATH = 'config/verbs.conf'
+
+
 # DICT_PATH = 'config/dict.conf'
 
 
@@ -32,6 +37,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(SUB_TOPIC_JX)
     client.subscribe(SUB_TOPIC_HW)
     client.subscribe(SUB_TOPIC_ZF)
+    client.subscribe(SUB_TOPIC_CS)
 
 
 # mqtt callback
@@ -41,9 +47,10 @@ def on_message(client, userdata, msg):
 
     if msg.topic == SUB_TOPIC_HW \
             or msg.topic == SUB_TOPIC_JX \
+            or msg.topic == SUB_TOPIC_CS \
             or msg.topic == SUB_TOPIC_ZF:
-        action_string = msg.payload.decode('utf8')
-        # action_string = msg.payload.decode('gb2312')
+        # action_string = msg.payload.decode('utf8')
+        action_string = msg.payload.decode('gb2312')
         main_logger.info('Received from [%s]: %s', msg.topic, action_string)
         # action_param = actionparser.get_action_parameter(action_string)
         action_param = action_parser.get_action_param(action_string)

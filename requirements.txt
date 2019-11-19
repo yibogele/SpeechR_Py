@@ -1,0 +1,3 @@
+pypinyin
+paho-mqtt
+jieba

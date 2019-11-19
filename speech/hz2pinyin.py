@@ -9,7 +9,7 @@ if __name__ == '__main__':
     print(f'{lazy_pinyin("啊奥哦额")}')
     load_phrases_dict({
         '蹒跚': [['pen'], ['shan']],
-        '你好':   [['hi'],['ya']]
+        '你好': [['hi'], ['ya']]
     })
     print(f'{lazy_pinyin("你好蹒跚好")}')
 
@@ -18,13 +18,16 @@ if __name__ == '__main__':
         listdate.pop()
     print('-'.join(listdate))
 
-    date_pattern = re.compile(r'((\d+)年)?(\d+)月(\d+)([日号])?');
+    date_pattern = re.compile(r'((\d+)年)?(\d+)月(\d+)([日号])?')
+
+
     def year_repl(matchobj):
         if matchobj.group(1):
             return f'{matchobj.group(2)}-{matchobj.group(3)}-{matchobj.group(4)}'
         else:
             from datetime import datetime
             return f'{datetime.today().year}-{matchobj.group(3)}-{matchobj.group(4)}'
+
 
     print(date_pattern.sub(year_repl, '4月18'))
     print(date_pattern.sub(year_repl, '4月18'))
@@ -36,5 +39,6 @@ if __name__ == '__main__':
         outtab = '1234567890'
         transtab = str.maketrans(intab, outtab)
         return carid.translate(transtab)
+
 
     print(f'{process_carid("r七八九零")}')
