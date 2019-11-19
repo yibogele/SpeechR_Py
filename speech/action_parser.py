@@ -72,8 +72,7 @@ class ActionParser:
         elif action == '勾选':
             if target == '公测':
                 return '公厕'
-            if target == '好雷婷子':
-                return '好嘞亭子'
+ 
 
         return target
 
